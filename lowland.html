@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="unicamp-event-box unicamp-box" id="eventWrap">
+    
+    </div>
+
+    <script>
+      const eventWrap = document.getElementById("eventWrap");
+      var testLekan = document.getElementById("testLekan");
+      let titles = "";
+      let events = [];
+
+      console.log(eventWrap);
+      console.log(testLekan);
+
+function timeTo12(time){
+
+  var parts = time.split(':');
+  var hours = parseInt(parts[0]);
+  var minutes = parts[1];
+
+  if(hours >= 12){
+    var newhours = parseInt(hours) - 12;
+    var meridiem = "pm";
+  }else{
+    var newhours = parseInt(hours);
+    var meridiem = "am";
+  }
+
+  if(newhours == 0) newhours = "12";
+  var newtime = newhours + ":" + minutes + " " + meridiem;
+
+  return newtime;
+}
+
+function getDay(date) {
+    const firstPart = date.split(" ")
+    const part = firstPart[0].split("-")
+    const day = part[2]
+
+    return day
+}
+
+function getMonth(date) {
+    const firstPart = date.split(" ");
+    const part = firstPart[0].split("-")
+    const month = parseFloat(part[1])
+    const months = {
+        1: "Jan",
+        2: "Feb",
+        3: "Mar",
+        4: "Apr",
+        5: "May",
+        6: "Jun",
+        7: "Jul",
+        8: "Aug",
+        9: "Spet",
+        10: "Oct",
+        11: "Nov",
+        12: "Dec"
+    }
+    let newMonth;
+
+    console.log(month);
+    for (const key in months) {
+        
+        if (month == key) {
+            newMonth = months[key]
+            console.log(newMonth); 
+        }
+              
+      
+    }
+
+    return newMonth  
+}
+// getMonth("2021-07-15 10:59:45")
+
+
+
+      fetch("http://dev.wissenapp.com/wissenpublic/public/api/get-all-events")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+
+          events = data.data;
+          console.log(events);
+
+          const slicedEvent = events.slice(0, 3);
+          console.log(slicedEvent);
+          slicedEvent.map((event, index) => {
+            eventWrap.innerHTML = `
+            <div class="box-header">
+          <h4 class="box-title">Upcoming Events</h4>
+
+          <div class="tm-button-wrapper">
+            <a
+              class="tm-button style-text tm-button-nm icon-right"
+              href="https://test.lrcfashion.com.ng/events/"
+            >
+              <div class="button-content-wrapper">
+                <span class="button-text">View all</span>
+
+                <span class="button-icon"
+                  ><i class="fas fa-long-arrow-right"></i
+                ></span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="box-body">
+          <div class="post-item">
+            <div class="event-caption">
+              <div class="left-box">
+                <div class="event-date">
+                  <div class="event-date--day">${getDay(event.created_at)}</div>
+                  <div class="event-date--month">${getMonth(event.created_at)}</div>
+                </div>
+              </div>
+
+              <div class="right-box">
+                <h3 class="post-title post-title-2-rows title-has-link">
+                  <a
+                    href="https://test.lrcfashion.com.ng/events/roadmap-to-the-sustainable-development-goals/"
+                    id="testLekan"
+                    >${event.title}</a
+                  >
+                </h3>
+                <div class="event-meta">
+                  <div class="event-time" id=" timeInt">${timeTo12(event.start_time)} - ${timeTo12(event.end_time)}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <a
+            class="btn-view-more"
+            href="https://test.lrcfashion.com.ng/events/"
+          >
+            <span class="fal fa-angle-double-down"></span>
+          </a>
+        </div>
+            `;
+          });
+
+      
+        });
+    </script>
+  </body>
+</html>
