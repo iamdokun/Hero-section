@@ -1,0 +1,18 @@
+body{
+    background-color:#336699 ;
+    font-family:Georgia, Times, Times New Roman, serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px;;
+}
+.card {
+    background-color: whitesmoke;
+    width: fit-content;
+    
+}
+.card a{
+    text-decoration: none;
+}
+.basic a:hover{
+    color: red;
+}
+.basic{
+    display: flex;
+}
