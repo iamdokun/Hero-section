@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: linear-gradient(to top right, lightblue 50%, pink 50%);
+    background-repeat: no-repeat;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rowwrap{
+    width: 250px;
+    padding: 1.5em 2em;
+    margin-top: 5em;
+    border-radius: 10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.25);
+}
+
+.rowwrap .head{
+    margin-bottom: 1em;
+}
+
+.rowwrap .head h3{
+    text-transform: capitalize;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+    opacity: .8;
+}
+
+.rowwrap form .inputwrap{
+    margin: 8px 0;
+}
+
+.rowwrap form .inputwrap input{
+    width: 100%;
+    text-align: center;
+    height: 35px;
+    padding: 1em;
+    border: none;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.btnwrap span{
+    border: none;
+}
+
+.rowwrap form .btnwrap button{
+    border: none;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.rowwrap form .btnwrap button span{
+    opacity: .6;
+}
